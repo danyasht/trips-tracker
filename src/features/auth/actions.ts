@@ -30,7 +30,7 @@ export async function signUp(formData: FormData) {
     redirect('/signup?error=signup-failed');
   }
 
-  redirect('/');
+  redirect('/trips');
 }
 
 export async function signIn(formData: FormData) {
@@ -52,5 +52,12 @@ export async function signIn(formData: FormData) {
     redirect('/login?error=signin-failed');
   }
 
-  redirect('/');
+  redirect('/trips');
+}
+
+export async function signOut() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+
+  redirect('/login');
 }
