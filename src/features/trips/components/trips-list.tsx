@@ -1,22 +1,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Trip } from '@/features/trips/types';
-
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(date));
-}
-
-function formatDates(start: string | null, end: string | null) {
-  if (start && end) return `${formatDate(start)} – ${formatDate(end)}`;
-  if (start) return `From ${formatDate(start)}`;
-  if (end) return `Until ${formatDate(end)}`;
-  return 'Dates not set';
-}
+import { formatDates } from '@/features/trips/format';
 
 export default function TripsList({ trips }: { trips: Trip[] }) {
   if (trips.length === 0) {
